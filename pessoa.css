@@ -1,0 +1,166 @@
+.container {
+  max-width: 1100px;
+  margin: 40px auto;
+  padding: 0 20px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.titulo {
+  margin-bottom: 30px;
+}
+
+.titulo h1 {
+  margin: 0;
+  color: #222;
+  font-size: 32px;
+}
+
+.titulo p {
+  color: #666;
+  margin-top: 8px;
+}
+
+
+/* CARDS */
+
+.card {
+  background: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 25px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.card h2 {
+  margin-top: 0;
+  margin-bottom: 20px;
+  color: #333;
+  font-size: 21px;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 12px;
+}
+
+
+/* FORMULÁRIO */
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.campo {
+  display: flex;
+  flex-direction: column;
+}
+
+.campo-grande {
+  grid-column: span 2;
+}
+
+.campo label {
+  font-weight: 600;
+  margin-bottom: 7px;
+  color: #333;
+}
+
+.campo input,
+.campo select {
+  height: 42px;
+  padding: 0 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 15px;
+  box-sizing: border-box;
+  background-color: white;
+}
+
+.campo input:focus,
+.campo select:focus {
+  outline: none;
+  border-color: #1976d2;
+  box-shadow: 0 0 0 2px rgba(25, 118, 210, 0.1);
+}
+
+.campo input::placeholder {
+  color: #999;
+}
+
+
+/* ERROS */
+
+.erro {
+  color: #d32f2f;
+  font-size: 13px;
+  margin-top: 5px;
+}
+
+
+/* BOTÕES */
+
+.acoes {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 25px;
+  margin-bottom: 40px;
+}
+
+.btn {
+  border: none;
+  border-radius: 6px;
+  padding: 12px 25px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.btn-primary {
+  background-color: #1976d2;
+  color: white;
+}
+
+.btn-primary:hover {
+  background-color: #1565c0;
+}
+
+.btn-secundario {
+  background-color: #e0e0e0;
+  color: #333;
+}
+
+.btn-secundario:hover {
+  background-color: #d0d0d0;
+}
+
+
+/* RESPONSIVO */
+
+@media (max-width: 700px) {
+
+  .container {
+    margin: 20px auto;
+    padding: 0 10px;
+  }
+
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .campo-grande {
+    grid-column: span 1;
+  }
+
+  .card {
+    padding: 18px;
+  }
+
+  .acoes {
+    flex-direction: column;
+  }
+
+  .btn {
+    width: 100%;
+  }
+}
