@@ -1,0 +1,695 @@
+<div class="container">
+
+  <!-- ========================================= -->
+  <!-- TÍTULO -->
+  <!-- ========================================= -->
+
+  <div class="titulo">
+
+    <h1>
+      Cadastro de Pessoa
+    </h1>
+
+    <p>
+      Preencha os dados da pessoa abaixo.
+    </p>
+
+  </div>
+
+
+  <form [formGroup]="pessoaForm">
+
+
+    <!-- ========================================= -->
+    <!-- DADOS PESSOAIS -->
+    <!-- ========================================= -->
+
+    <section class="card">
+
+      <h2>
+        Dados Pessoais
+      </h2>
+
+
+      <div class="form-grid">
+
+
+        <!-- NOME COMPLETO -->
+
+        <div class="campo campo-grande">
+
+          <label for="nomeCompleto">
+            Nome completo *
+          </label>
+
+          <input
+            id="nomeCompleto"
+            type="text"
+            formControlName="nomeCompleto"
+            placeholder="Digite o nome completo"
+          />
+
+          @if (campoInvalido('nomeCompleto')) {
+
+            <span class="erro">
+              Informe o nome completo.
+            </span>
+
+          }
+
+        </div>
+
+
+        <!-- DATA DE NASCIMENTO -->
+
+        <div class="campo">
+
+          <label for="dataNascimento">
+            Data de nascimento *
+          </label>
+
+          <input
+            id="dataNascimento"
+            type="date"
+            formControlName="dataNascimento"
+            min="1920-01-01"
+            max="2002-12-31"
+          />
+
+
+          @if (campoInvalido('dataNascimento')) {
+
+            @if (
+              pessoaForm
+                .get('dataNascimento')
+                ?.hasError('required')
+            ) {
+
+              <span class="erro">
+                Informe a data de nascimento.
+              </span>
+
+            }
+
+            @else if (
+              pessoaForm
+                .get('dataNascimento')
+                ?.hasError('dataMinima')
+            ) {
+
+              <span class="erro">
+                A data deve ser a partir de 01/01/1920.
+              </span>
+
+            }
+
+            @else if (
+              pessoaForm
+                .get('dataNascimento')
+                ?.hasError('dataMaxima')
+            ) {
+
+              <span class="erro">
+                A data deve ser até 31/12/2002.
+              </span>
+
+            }
+
+          }
+
+        </div>
+
+
+        <!-- CPF -->
+
+        <div class="campo">
+
+          <label for="cpf">
+            CPF *
+          </label>
+
+          <input
+            id="cpf"
+            type="text"
+            inputmode="numeric"
+            formControlName="cpf"
+            placeholder="Digite o CPF"
+            maxlength="11"
+            (input)="somenteNumeros($event)"
+          />
+
+
+          @if (camposComErroNumerico['cpf']) {
+
+            <span class="erro">
+              Digite apenas números.
+            </span>
+
+          }
+
+          @else if (campoInvalido('cpf')) {
+
+            <span class="erro">
+              Informe um CPF com 11 números.
+            </span>
+
+          }
+
+        </div>
+
+
+        <!-- RG -->
+
+        <div class="campo">
+
+          <label for="rg">
+            RG *
+          </label>
+
+          <input
+            id="rg"
+            type="text"
+            inputmode="numeric"
+            formControlName="rg"
+            placeholder="Digite o RG"
+            maxlength="11"
+            (input)="somenteNumeros($event)"
+          />
+
+
+          @if (camposComErroNumerico['rg']) {
+
+            <span class="erro">
+              Digite apenas números.
+            </span>
+
+          }
+
+          @else if (campoInvalido('rg')) {
+
+            <span class="erro">
+              O RG deve conter no máximo 11 números.
+            </span>
+
+          }
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- ========================================= -->
+    <!-- FILIAÇÃO -->
+    <!-- ========================================= -->
+
+    <section class="card">
+
+      <h2>
+        Filiação
+      </h2>
+
+
+      <div class="form-grid">
+
+
+        <!-- NOME DA MÃE -->
+
+        <div class="campo">
+
+          <label for="nomeMae">
+            Nome da mãe *
+          </label>
+
+          <input
+            id="nomeMae"
+            type="text"
+            formControlName="nomeMae"
+            placeholder="Nome completo da mãe"
+          />
+
+
+          @if (campoInvalido('nomeMae')) {
+
+            <span class="erro">
+              Informe o nome da mãe.
+            </span>
+
+          }
+
+        </div>
+
+
+        <!-- NOME DO PAI -->
+
+        <div class="campo">
+
+          <label for="nomePai">
+            Nome do pai
+          </label>
+
+          <input
+            id="nomePai"
+            type="text"
+            formControlName="nomePai"
+            placeholder="Nome completo do pai"
+          />
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- ========================================= -->
+    <!-- ORIGEM -->
+    <!-- ========================================= -->
+
+    <section class="card">
+
+      <h2>
+        Dados de Origem
+      </h2>
+
+
+      <div class="form-grid">
+
+
+        <!-- PAÍS -->
+
+        <div class="campo">
+
+          <label for="paisOrigem">
+            País de origem *
+          </label>
+
+          <input
+            id="paisOrigem"
+            type="text"
+            formControlName="paisOrigem"
+            placeholder="Ex.: Brasil"
+          />
+
+
+          @if (campoInvalido('paisOrigem')) {
+
+            <span class="erro">
+              Informe o país de origem.
+            </span>
+
+          }
+
+        </div>
+
+
+        <!-- UF -->
+
+        <div class="campo">
+
+          <label for="ufOrigem">
+            UF de origem *
+          </label>
+
+          <select
+            id="ufOrigem"
+            formControlName="ufOrigem"
+          >
+
+            <option value="">
+              Selecione
+            </option>
+
+            <option value="AC">AC</option>
+            <option value="AL">AL</option>
+            <option value="AP">AP</option>
+            <option value="AM">AM</option>
+            <option value="BA">BA</option>
+            <option value="CE">CE</option>
+            <option value="DF">DF</option>
+            <option value="ES">ES</option>
+            <option value="GO">GO</option>
+            <option value="MA">MA</option>
+            <option value="MT">MT</option>
+            <option value="MS">MS</option>
+            <option value="MG">MG</option>
+            <option value="PA">PA</option>
+            <option value="PB">PB</option>
+            <option value="PR">PR</option>
+            <option value="PE">PE</option>
+            <option value="PI">PI</option>
+            <option value="RJ">RJ</option>
+            <option value="RN">RN</option>
+            <option value="RS">RS</option>
+            <option value="RO">RO</option>
+            <option value="RR">RR</option>
+            <option value="SC">SC</option>
+            <option value="SP">SP</option>
+            <option value="SE">SE</option>
+            <option value="TO">TO</option>
+
+          </select>
+
+
+          @if (campoInvalido('ufOrigem')) {
+
+            <span class="erro">
+              Informe a UF de origem.
+            </span>
+
+          }
+
+        </div>
+
+
+        <!-- CIDADE -->
+
+        <div class="campo">
+
+          <label for="cidadeOrigem">
+            Cidade de origem *
+          </label>
+
+          <input
+            id="cidadeOrigem"
+            type="text"
+            formControlName="cidadeOrigem"
+            placeholder="Digite a cidade"
+          />
+
+
+          @if (campoInvalido('cidadeOrigem')) {
+
+            <span class="erro">
+              Informe a cidade de origem.
+            </span>
+
+          }
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- ========================================= -->
+    <!-- DADOS DE CONTATO -->
+    <!-- ========================================= -->
+
+    <section class="card">
+
+      <h2>
+        Dados de Contato
+      </h2>
+
+
+      <div class="form-grid">
+
+
+        <!-- TELEFONE -->
+
+        <div class="campo">
+
+          <label for="telefone">
+            Telefone *
+          </label>
+
+          <input
+            id="telefone"
+            type="tel"
+            inputmode="numeric"
+            formControlName="telefone"
+            placeholder="Digite o telefone"
+            maxlength="11"
+            (input)="somenteNumeros($event)"
+          />
+
+
+          @if (camposComErroNumerico['telefone']) {
+
+            <span class="erro">
+              Digite apenas números.
+            </span>
+
+          }
+
+          @else if (campoInvalido('telefone')) {
+
+            <span class="erro">
+              Informe um telefone válido.
+            </span>
+
+          }
+
+        </div>
+
+
+        <!-- CELULAR -->
+
+        <div class="campo">
+
+          <label for="celular">
+            Celular
+          </label>
+
+          <input
+            id="celular"
+            type="tel"
+            inputmode="numeric"
+            formControlName="celular"
+            placeholder="Digite o celular"
+            maxlength="11"
+            (input)="somenteNumeros($event)"
+          />
+
+
+          @if (camposComErroNumerico['celular']) {
+
+            <span class="erro">
+              Digite apenas números.
+            </span>
+
+          }
+
+          @else if (campoInvalido('celular')) {
+
+            <span class="erro">
+              Informe um celular válido.
+            </span>
+
+          }
+
+        </div>
+
+
+        <!-- E-MAIL -->
+
+        <div class="campo campo-grande">
+
+          <label for="email">
+            E-mail *
+          </label>
+
+          <input
+            id="email"
+            type="email"
+            formControlName="email"
+            placeholder="exemplo@email.com"
+          />
+
+
+          @if (campoInvalido('email')) {
+
+            <span class="erro">
+              Informe um e-mail válido.
+            </span>
+
+          }
+
+        </div>
+
+
+        <!-- CEP -->
+
+        <div class="campo">
+
+          <label for="cep">
+            CEP
+          </label>
+
+          <input
+            id="cep"
+            type="text"
+            inputmode="numeric"
+            formControlName="cep"
+            placeholder="Digite o CEP"
+            maxlength="8"
+            (input)="somenteNumeros($event)"
+          />
+
+
+          @if (camposComErroNumerico['cep']) {
+
+            <span class="erro">
+              Digite apenas números.
+            </span>
+
+          }
+
+          @else if (campoInvalido('cep')) {
+
+            <span class="erro">
+              O CEP deve conter 8 números.
+            </span>
+
+          }
+
+        </div>
+
+
+        <!-- ENDEREÇO -->
+
+        <div class="campo campo-grande">
+
+          <label for="endereco">
+            Endereço
+          </label>
+
+          <input
+            id="endereco"
+            type="text"
+            formControlName="endereco"
+            placeholder="Rua, Avenida, etc."
+          />
+
+        </div>
+
+
+        <!-- NÚMERO -->
+
+        <div class="campo">
+
+          <label for="numero">
+            Número
+          </label>
+
+          <input
+            id="numero"
+            type="text"
+            inputmode="numeric"
+            formControlName="numero"
+            placeholder="Número"
+            (input)="somenteNumeros($event)"
+          />
+
+
+          @if (camposComErroNumerico['numero']) {
+
+            <span class="erro">
+              Digite apenas números.
+            </span>
+
+          }
+
+          @else if (campoInvalido('numero')) {
+
+            <span class="erro">
+              Informe apenas números.
+            </span>
+
+          }
+
+        </div>
+
+
+        <!-- COMPLEMENTO -->
+
+        <div class="campo">
+
+          <label for="complemento">
+            Complemento
+          </label>
+
+          <input
+            id="complemento"
+            type="text"
+            formControlName="complemento"
+            placeholder="Apto, casa, bloco..."
+          />
+
+        </div>
+
+
+        <!-- BAIRRO -->
+
+        <div class="campo">
+
+          <label for="bairro">
+            Bairro
+          </label>
+
+          <input
+            id="bairro"
+            type="text"
+            formControlName="bairro"
+            placeholder="Bairro"
+          />
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- ========================================= -->
+    <!-- BOTÕES -->
+    <!-- ========================================= -->
+
+    <div class="acoes">
+
+
+      <button
+        type="button"
+        class="btn btn-secundario"
+        (click)="limpar()"
+      >
+        Limpar
+      </button>
+
+
+      @if (!modoEdicao) {
+
+        <button
+          type="button"
+          class="btn btn-primary"
+          (click)="salvar()"
+        >
+          Salvar
+        </button>
+
+      }
+
+      @else {
+
+        <button
+          type="button"
+          class="btn btn-primary"
+          (click)="atualizar()"
+        >
+          Atualizar
+        </button>
+
+      }
+
+    </div>
+
+  </form>
+
+</div>
