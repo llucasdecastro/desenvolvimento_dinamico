@@ -48,6 +48,23 @@ export class Eventos {
           Validators.required,
           Validators.min(0)
         ]
+      ],
+
+      emailResponsavel: [
+        '',
+        [
+          Validators.required,
+          Validators.email
+        ]
+      ],
+
+      vagas: [
+        '',
+        [
+          Validators.required,
+          Validators.min(1),
+          Validators.pattern('^[0-9]+$')
+        ]
       ]
 
     });
@@ -56,9 +73,7 @@ export class Eventos {
   salvar(): void {
 
     if (this.eventoForm.invalid) {
-
       this.eventoForm.markAllAsTouched();
-
       return;
     }
 
@@ -73,7 +88,6 @@ export class Eventos {
   }
 
   limpar(): void {
-
     this.eventoForm.reset();
   }
 

@@ -1,37 +1,22 @@
-<p>eventos works!</p>
+
 <div class="container">
 
   <!-- TÍTULO -->
-
   <div class="titulo">
-
-    <h1>
-      Cadastro de Evento
-    </h1>
-
-    <p>
-      Preencha os dados do evento abaixo.
-    </p>
-
+    <h1>Cadastro de Evento</h1>
+    <p>Preencha os dados do evento abaixo.</p>
   </div>
 
-
-  <form [formGroup]="eventoForm">
+  <form [formGroup]="eventoForm" (ngSubmit)="salvar()">
 
     <!-- DADOS DO EVENTO -->
-
     <section class="card">
 
-      <h2>
-        Dados do Evento
-      </h2>
-
+      <h2>Dados do Evento</h2>
 
       <div class="form-grid">
 
-
         <!-- NOME DO EVENTO -->
-
         <div class="campo campo-grande">
 
           <label for="nomeEvento">
@@ -46,18 +31,14 @@
           />
 
           @if (campoInvalido('nomeEvento')) {
-
             <span class="erro">
-              Informe o nome do evento.
+              Informe o nome do evento (mínimo de 3 caracteres).
             </span>
-
           }
 
         </div>
 
-
         <!-- DATA DO EVENTO -->
-
         <div class="campo">
 
           <label for="dataEvento">
@@ -71,18 +52,14 @@
           />
 
           @if (campoInvalido('dataEvento')) {
-
             <span class="erro">
               Informe a data do evento.
             </span>
-
           }
 
         </div>
 
-
         <!-- LOCAL DO EVENTO -->
-
         <div class="campo campo-grande">
 
           <label for="localEvento">
@@ -97,22 +74,18 @@
           />
 
           @if (campoInvalido('localEvento')) {
-
             <span class="erro">
-              Informe o local do evento.
+              Informe o local do evento (mínimo de 3 caracteres).
             </span>
-
           }
 
         </div>
 
-
         <!-- VALOR DO EVENTO -->
-
         <div class="campo">
 
           <label for="valorEvento">
-            Valor do evento *
+            Valor do evento (R$) *
           </label>
 
           <input
@@ -125,11 +98,56 @@
           />
 
           @if (campoInvalido('valorEvento')) {
-
             <span class="erro">
-              Informe um valor válido.
+              Informe um valor válido, igual ou superior a zero.
             </span>
+          }
 
+        </div>
+
+        <!-- EMAIL DO RESPONSÁVEL -->
+        <div class="campo campo-grande">
+
+          <label for="emailResponsavel">
+            E-mail do responsável *
+          </label>
+
+          <input
+            id="emailResponsavel"
+            type="email"
+            formControlName="emailResponsavel"
+            placeholder="exemplo@email.com"
+            autocomplete="email"
+          />
+
+          @if (campoInvalido('emailResponsavel')) {
+            <span class="erro">
+              Informe um e-mail válido.
+            </span>
+          }
+
+        </div>
+
+        <!-- QUANTIDADE DE VAGAS -->
+        <div class="campo">
+
+          <label for="vagas">
+            Quantidade de vagas *
+          </label>
+
+          <input
+            id="vagas"
+            type="number"
+            formControlName="vagas"
+            placeholder="Ex.: 50"
+            min="1"
+            step="1"
+          />
+
+          @if (campoInvalido('vagas')) {
+            <span class="erro">
+              Informe uma quantidade inteira de vagas maior que zero.
+            </span>
           }
 
         </div>
@@ -138,9 +156,7 @@
 
     </section>
 
-
     <!-- BOTÕES -->
-
     <div class="acoes">
 
       <button
@@ -151,11 +167,9 @@
         Limpar
       </button>
 
-
       <button
-        type="button"
+        type="submit"
         class="btn btn-primary"
-        (click)="salvar()"
       >
         Salvar
       </button>

@@ -1,0 +1,147 @@
+
+<div class="container">
+
+  <header class="titulo">
+    <h1>Cadastro de Evento</h1>
+    <p>Preencha os dados do evento abaixo.</p>
+  </header>
+
+  <section class="card">
+    <h2>Dados do Evento</h2>
+
+    <form (ngSubmit)="salvar()">
+
+      <div class="form-grid">
+
+        <!-- TÍTULO -->
+        <div class="campo campo-grande">
+          <label for="titulo">Título do evento *</label>
+
+          <input
+            id="titulo"
+            name="titulo"
+            type="text"
+            [(ngModel)]="evento.titulo"
+            (blur)="validarCampo('titulo')"
+            [class.invalido]="camposVisitados['titulo'] && erros['titulo']"
+            placeholder="Digite o título do evento"
+          />
+
+          @if (camposVisitados['titulo'] && erros['titulo']) {
+            <span class="erro">{{ erros['titulo'] }}</span>
+          }
+        </div>
+
+        <!-- DATA -->
+        <div class="campo">
+          <label for="data">Data do evento *</label>
+
+          <input
+            id="data"
+            name="data"
+            type="date"
+            [(ngModel)]="evento.data"
+            (blur)="validarCampo('data')"
+            [class.invalido]="camposVisitados['data'] && erros['data']"
+          />
+
+          @if (camposVisitados['data'] && erros['data']) {
+            <span class="erro">{{ erros['data'] }}</span>
+          }
+        </div>
+
+        <!-- LOCAL -->
+        <div class="campo campo-grande">
+          <label for="local">Local do evento *</label>
+
+          <input
+            id="local"
+            name="local"
+            type="text"
+            [(ngModel)]="evento.local"
+            (blur)="validarCampo('local')"
+            [class.invalido]="camposVisitados['local'] && erros['local']"
+            placeholder="Ex.: Auditório ou Laboratório 1"
+          />
+
+          @if (camposVisitados['local'] && erros['local']) {
+            <span class="erro">{{ erros['local'] }}</span>
+          }
+        </div>
+
+        <!-- EMAIL -->
+        <div class="campo campo-grande">
+          <label for="emailResponsavel">E-mail do responsável *</label>
+
+          <input
+            id="emailResponsavel"
+            name="emailResponsavel"
+            type="email"
+            [(ngModel)]="evento.emailResponsavel"
+            (blur)="validarCampo('emailResponsavel')"
+            [class.invalido]="camposVisitados['emailResponsavel'] && erros['emailResponsavel']"
+            placeholder="exemplo@email.com"
+          />
+
+          @if (camposVisitados['emailResponsavel'] && erros['emailResponsavel']) {
+            <span class="erro">{{ erros['emailResponsavel'] }}</span>
+          }
+        </div>
+
+        <!-- VAGAS -->
+        <div class="campo">
+          <label for="vagas">Quantidade de vagas *</label>
+
+          <input
+            id="vagas"
+            name="vagas"
+            type="number"
+            [(ngModel)]="evento.vagas"
+            (blur)="validarCampo('vagas')"
+            [class.invalido]="camposVisitados['vagas'] && erros['vagas']"
+            min="1"
+            max="200"
+            step="1"
+            placeholder="Ex.: 50"
+          />
+
+          @if (camposVisitados['vagas'] && erros['vagas']) {
+            <span class="erro">{{ erros['vagas'] }}</span>
+          }
+        </div>
+
+      </div>
+
+      <!-- BOTÃO SALVAR -->
+      <div class="acoes">
+        <button
+          type="submit"
+          class="btn btn-primary"
+          [disabled]="!formularioValido"
+        >
+          Salvar
+        </button>
+      </div>
+
+    </form>
+  </section>
+
+  <!-- LISTA DE EVENTOS -->
+  <section class="card lista-eventos">
+    <h2>Eventos cadastrados</h2>
+
+    @for (item of eventos; track $index) {
+      <article class="evento-item">
+        <h3>{{ item.titulo }}</h3>
+
+        <p><strong>Data:</strong> {{ item.data }}</p>
+        <p><strong>Local:</strong> {{ item.local }}</p>
+        <p><strong>Responsável:</strong> {{ item.emailResponsavel }}</p>
+        <p><strong>Vagas:</strong> {{ item.vagas }}</p>
+      </article>
+    } @empty {
+      <p>Nenhum evento cadastrado ainda.</p>
+    }
+  </section>
+
+</div>
