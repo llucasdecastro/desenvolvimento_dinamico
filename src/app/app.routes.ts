@@ -5,6 +5,7 @@ import { Pessoa } from './pessoa/pessoa';
 import { Padrao } from './padrao/padrao';
 import { Eventos } from './eventos/eventos';
 import { CadastroEvento } from './pages/cadastro-evento/cadastro-evento';
+import { Empresa } from './empresa/empresa';
 import { NaoEncontrada } from './nao-encontrada/nao-encontrada';
 
 export const routes: Routes = [
@@ -13,6 +14,7 @@ export const routes: Routes = [
   { path: 'home', component: Home },
   { path: 'pessoa', component: Pessoa },
   { path: 'padrao', component: Padrao },
+  { path: 'empresa', component: Empresa },
 
   { path: 'eventos/novo', component: CadastroEvento },
   { path: 'eventos', component: Eventos },

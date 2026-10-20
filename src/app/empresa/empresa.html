@@ -1,0 +1,149 @@
+
+<div class="container">
+
+  <div class="titulo">
+    <h1>Cadastro de Empresa - TESTE</h1>
+    <p>Preencha os dados da empresa abaixo.</p>
+  </div>
+
+  <form [formGroup]="empresaForm" (ngSubmit)="enviar()">
+
+    <section class="card">
+
+      <h2>Dados da Empresa</h2>
+
+      <div class="form-grid">
+
+        <!-- NOME -->
+        <div class="campo campo-grande">
+
+          <label for="nome">Nome da empresa *</label>
+
+          <input
+            id="nome"
+            type="text"
+            formControlName="nome"
+            placeholder="Digite o nome da empresa"
+          />
+
+          @if (campoInvalido('nome')) {
+            <span class="erro">
+              Informe o nome da empresa (mínimo de 3 caracteres).
+            </span>
+          }
+
+        </div>
+
+        <!-- CNPJ -->
+        <div class="campo campo-grande">
+
+          <label for="cnpj">CNPJ *</label>
+
+          <input
+            id="cnpj"
+            type="text"
+            formControlName="cnpj"
+            placeholder="Digite os 14 números do CNPJ"
+            maxlength="14"
+            inputmode="numeric"
+          />
+
+          @if (campoInvalido('cnpj')) {
+            <span class="erro">
+              Informe um CNPJ com 14 dígitos numéricos.
+            </span>
+          }
+
+        </div>
+
+        <!-- LOGOMARCA -->
+        <div class="campo campo-grande">
+
+          <label for="logomarca">Logomarca *</label>
+
+          <input
+            id="logomarca"
+            type="file"
+            accept="image/*"
+            (change)="selecionarLogomarca($event)"
+          />
+
+          @if (logomarcaInvalida()) {
+            <span class="erro">
+              Selecione a logomarca da empresa.
+            </span>
+          } @else {
+            <span class="arquivo-selecionado">
+              {{ logomarcaSelecionada?.name }}
+            </span>
+          }
+
+        </div>
+
+        <!-- FUNDAÇÃO -->
+        <div class="campo">
+
+          <label for="fundacao">Data de fundação *</label>
+
+          <input
+            id="fundacao"
+            type="date"
+            formControlName="fundacao"
+          />
+
+          @if (campoInvalido('fundacao')) {
+            <span class="erro">
+              Informe a data de fundação da empresa.
+            </span>
+          }
+
+        </div>
+
+        <!-- DESCRIÇÃO -->
+        <div class="campo campo-grande">
+
+          <label for="descricao">Descrição *</label>
+
+          <textarea
+            id="descricao"
+            formControlName="descricao"
+            rows="5"
+            maxlength="1000"
+            placeholder="Descreva a empresa, suas atividades e seus objetivos"
+          ></textarea>
+
+          @if (campoInvalido('descricao')) {
+            <span class="erro">
+              Informe uma descrição com pelo menos 10 caracteres.
+            </span>
+          }
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- BOTÕES -->
+    <div class="acoes">
+
+      <button
+        type="button"
+        class="btn btn-secundario"
+        (click)="limpar()"
+      >
+        Limpar
+      </button>
+
+      <button
+        type="submit"
+        class="btn btn-primary"
+      >
+        Enviar
+      </button>
+
+    </div>
+
+  </form>
+
+</div>
