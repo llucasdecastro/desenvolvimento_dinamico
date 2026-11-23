@@ -134,10 +134,11 @@
       <article class="evento-item">
         <h3>{{ item.titulo }}</h3>
 
-        <p><strong>Data:</strong> {{ item.data }}</p>
-        <p><strong>Local:</strong> {{ item.local }}</p>
+        <p><strong>Data:</strong> {{ item.data | date:'dd/MM/yyyy' }}</p>
+        <p><strong>Dia:</strong> {{ item.data | date:'EEEE, d \'de\' MMMM' }}</p>
+        <p><strong>Local:</strong> {{ item.local | uppercase }}</p>
         <p><strong>Responsável:</strong> {{ item.emailResponsavel }}</p>
-        <p><strong>Vagas:</strong> {{ item.vagas }}</p>
+        <p><strong>Vagas:</strong> {{ item.vagas | number }}</p>
       </article>
     } @empty {
       <p>Nenhum evento cadastrado ainda.</p>

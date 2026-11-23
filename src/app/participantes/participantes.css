@@ -1,0 +1,82 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.titulo h1 {
+  margin: 0 0 4px;
+  font-size: 26px;
+  color: var(--azul-escuro);
+}
+
+.titulo p {
+  margin: 0 0 4px;
+  color: var(--tinta-2);
+}
+
+.titulo .descricao {
+  color: var(--tinta-3);
+  font-size: 14px;
+}
+
+.card {
+  background: var(--cartao);
+  border: 1px solid var(--linha);
+  border-radius: var(--raio);
+  box-shadow: var(--sombra);
+  padding: 22px;
+}
+
+.card h2 {
+  margin: 0 0 14px;
+  font-size: 18px;
+}
+
+.participante {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--linha);
+}
+
+.participante:last-child {
+  border-bottom: 0;
+}
+
+.avatar {
+  flex: none;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: var(--azul);
+  color: #fff;
+  font-weight: 700;
+  font-size: 15px;
+}
+
+.dados {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.dados span {
+  color: var(--tinta-2);
+  font-size: 14px;
+}
+
+.pagamento {
+  flex: none;
+  font-size: 13px;
+  color: var(--azul-escuro);
+  background: var(--papel);
+  border: 1px solid var(--linha);
+  border-radius: 99px;
+  padding: 4px 12px;
+}

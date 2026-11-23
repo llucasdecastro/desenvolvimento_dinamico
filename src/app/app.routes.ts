@@ -6,6 +6,7 @@ import { Padrao } from './padrao/padrao';
 import { Eventos } from './eventos/eventos';
 import { CadastroEvento } from './pages/cadastro-evento/cadastro-evento';
 import { Empresa } from './empresa/empresa';
+import { Participantes } from './participantes/participantes';
 import { NaoEncontrada } from './nao-encontrada/nao-encontrada';
 
 export const routes: Routes = [
@@ -18,6 +19,7 @@ export const routes: Routes = [
 
   { path: 'eventos/novo', component: CadastroEvento },
   { path: 'eventos', component: Eventos },
+  { path: 'participantes', component: Participantes },
 
   // A rota curinga deve ficar sempre por último.
   { path: '**', component: NaoEncontrada }
